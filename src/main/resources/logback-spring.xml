@@ -39,4 +39,7 @@
         <appender-ref ref="console" />
         <appender-ref ref="flatfile" />
     </root>
+    <logger name="org.springframework" level="OFF">
+        <appender-ref ref="console"/>
+    </logger>
 </configuration>

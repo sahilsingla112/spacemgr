@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
+ * This class is used to collect statistics for publishing performance stats. Files deleted/sec.
+ * To keep the code clean, this collection of statistics is done using Spring AOP.
  * @author Sahil Singla
  * @version 1.0
  * @since 05-06-2020

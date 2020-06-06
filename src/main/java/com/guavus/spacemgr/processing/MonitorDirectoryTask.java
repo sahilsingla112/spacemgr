@@ -42,7 +42,6 @@ public class MonitorDirectoryTask implements Runnable {
 
 	@Override
 	public void run() {
-		// sorted order of files to be directory = {File@5773} "src\test\resources\testdirectory1"deleted
 		self.processDirectories(directories);
 		LOG.info("Scheduled task is complete");
 	}
