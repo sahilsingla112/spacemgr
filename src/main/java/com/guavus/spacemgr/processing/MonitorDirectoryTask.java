@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -81,28 +86,27 @@ public class MonitorDirectoryTask implements Runnable {
 
 		long curSize = currentSize;
 
-		int i = 0;
-		while (curSize >= directoryInfo.getMinSize() && i < files.length){
+		for (int i=0; curSize >= directoryInfo.getMinSize() && i < files.length; i++){
 			File file = files[i];
 
 			// Remove only regular files, not directories
 			if (file.isDirectory()) {
-				i++;
 				continue;
 			}
 
 			// remove the file
-			long fileSizeKB = file.length();
-			boolean deleted = file.delete();
+			long fileSize = file.length();
 
-			if (deleted) {
-				curSize -= fileSizeKB;
+			Path path = Paths.get(file.getAbsolutePath());
+			try{
+				Files.delete(path);
+				curSize -= fileSize;
 				LOG.info(String.format("File %s is deleted", file.getName()));
-			} else {
-				LOG.error(String.format("File %s could not be deleted", file.getName()));
+			}catch (NoSuchFileException e){
+				LOG.error(String.format("File %s could not be found", file.getName()), e);
+			}catch (IOException e){
+				LOG.error(String.format("File %s could not be deleted", file.getName()), e);
 			}
-
-			i++;
 		}
 	}
 
