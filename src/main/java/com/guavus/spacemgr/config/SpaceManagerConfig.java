@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.Executors;
 
 /**
+ * Spring Configuration class to declare beans
  * @author Sahil Singla
  * @version 1.0
  * @since 04-06-2020

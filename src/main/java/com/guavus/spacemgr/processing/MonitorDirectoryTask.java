@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * This is the actual task performed to delete files if required.
  * @author Sahil Singla
  * @version 1.0
  * @since 04-06-2020
@@ -40,6 +41,9 @@ public class MonitorDirectoryTask implements Runnable {
 		this.directories = directories;
 	}
 
+	/**
+	 * self reference is used for AOP. this reference will not work because the method invocation should be done by the bean.
+	 */
 	@Override
 	public void run() {
 		self.processDirectories(directories);

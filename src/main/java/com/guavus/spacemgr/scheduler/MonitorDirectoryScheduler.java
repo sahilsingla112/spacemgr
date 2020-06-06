@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
+ * Scheduler that launches MonitorDirectory task after every refresh.interval. It uses java ExecutorService.
  * @author Sahil Singla
  * @version 1.0
  * @since 04-06-2020
