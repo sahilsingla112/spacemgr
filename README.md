@@ -1,6 +1,6 @@
 
 Space Manager project for cleaning up directories
-
+#change
 It will periodically launch a runnable task which will delete the files from the configured directories if their total size is greater than the specified max size. After deletion, size will come under min size. If the size of directories is less than max size, task will not do anything. 
 
 
